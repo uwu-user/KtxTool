@@ -2,13 +2,13 @@ This should be easy...
 
 ---
 
-### Prerequisites
-- Python 3.x
-- pip
-- Git
-- CMake (version 3.10 or higher)
-- C++ compiler (supporting C++11)
-- Make `(Recommended)` or Ninja build system
+- Prerequisites
+  - Python 3.x
+  - pip
+  - Git
+  - CMake (version 3.10 or higher)
+  - C++ compiler (supporting C++11)
+  - Make `(Recommended)` or Ninja build system
 
 ---
 
@@ -70,7 +70,19 @@ If you do everything right, it should be the same as this
 
 --- 
 
-### [2]: KtxTool.py
+### [2]: KtxTool.py Prerequisites
+
+- Tool Prerequisites
+  - `os / sys / subprocess / pathlib`
+    ```
+    python3 built-in module - [Done]
+    ```
+  - PIL
+    ```
+    pip install Pillow
+    ```
+
+### [3]: KtxTool.py
 
 - clone it
 ```
