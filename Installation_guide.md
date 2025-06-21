@@ -56,9 +56,15 @@ make -j$(nproc)
 chmod +x ./EtcTool
 ```
 
-**- copy the file**
+**- copy the file** `Optional`
 ```
 copy the EtcTool file from $HOME/etc2comp/build/EtcTool to $HOME
+```
+ - or you can use a special path when running the tool `(It'll be the same, it won't make a difference)`
+```
+[ ! ]: EtcTool not found in current directory
+   › [ ? ]  Enter the tool path or exit to cancel
+      » ./etc2comp/build/EtcTool/EtcTool
 ```
 
 ---
