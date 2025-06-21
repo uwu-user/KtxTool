@@ -97,7 +97,7 @@ def print_tool_logo():
 │ {Colors.Cyan}» {Colors.White}ETC Tool{Colors.White}{' ' * 28}{Colors.Light_Blue}│  
 │ {Colors.Cyan}» {Colors.White}Version {Colors.Green}1.0{Colors.White}{' ' * 25}{Colors.Light_Blue}│  
 ╰───────────────────────────────────────╯  
-{Colors.White}{' ' * 1}› {Colors.White}[ {Colors.Cyan}? {Colors.White}] {Colors.Green}Bug's reporting: \n{' ' * 3}› {Colors.White}https://{Colors.Green}github.com{Colors.White}/{Colors.Light_Cyan}uwu-user{Colors.White}/{Colors.Light_Blue}KtxTool{Colors.White}/issues/New
+{Colors.White}{' ' * 1}› {Colors.White}[ {Colors.Cyan}? {Colors.White}] {Colors.Green}Bug's reporting: \n{' ' * 3}› {Colors.White}https://{Colors.Green}github.com{Colors.White}/{Colors.Light_Cyan}uwu-user{Colors.White}/{Colors.Light_Blue}KtxTool{Colors.White}/issues/new
 {Colors.Reset}""")
 
 #______________________________________________________________________________
@@ -128,20 +128,20 @@ def verify_etctool():
     
     if not toolpath.exists():  # If not found in current directory
         # Prompt user to specify location
-        print(f"\n{Colors.Red}• {Colors.White}[ {Colors.Red}! {Colors.White}]: {Colors.Yellow}EtcTool not found in current directory{Colors.Reset}")
+        print(f"\n{Colors.Red}• {Colors.White}[ {Colors.Red}! {Colors.White}]: {Colors.Green}EtcTool {Colors.Red}not found {Colors.White}in current directory\n{' ' * 3}› {Colors.White}[ {Colors.Green}? {Colors.White}] {Colors.Light_Blue} Enter the tool path {Colors.White}or {Colors.Red}'{Colors.Green}exit{Colors.Red}' {Colors.Light_Blue}to cancel{Colors.Reset}")
 
         while True:  # Keep prompting until valid path or exit
-            user_path = input(f"{' ' * 3}{Colors.Green}» ").strip()
+            user_path = input(f"{' ' * 6}{Colors.Green}» ").strip()
             user_path = check_for_exit(user_path)  # Check for exit command
             
             if not user_path:
-                print(f"{' ' * 9}› {Colors.White}[ {Colors.Red}! {Colors.White}] {Colors.Red}Error: {Colors.Light_Blue}Enter a path{Colors.Reset}")
+                print(f"{' ' * 9}› {Colors.White}[ {Colors.Red}! {Colors.White}] {Colors.Red}Error: {Colors.Light_Blue} Enter the new tool {Colors.Green}path {Colors.Light_Blue}or {Colors.Red}'{Colors.Green}exit{Colors.Red}' {Colors.Light_Blue}to cancel{Colors.Reset}")
                 continue
                 
             toolpath = Path(user_path)
             if toolpath.exists():
                 break  # Found valid path
-            print(f"{' ' * 9}› {Colors.White}[ {Colors.Red}! {Colors.White}] {Colors.Red}Error: {Colors.Red}File not found at {Colors.Yellow}{user_path}{Colors.Reset}")
+            print(f"{' ' * 9}› {Colors.White}[ {Colors.Red}! {Colors.White}] {Colors.Red}Error: {Colors.Light_Blue}File {Colors.Red}not found {Colors.Light_Blue}at {Colors.Green}{user_path}{Colors.Reset}")
 
     try:
         toolpath = toolpath.resolve()  # Convert to absolute path
