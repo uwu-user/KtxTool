@@ -19,7 +19,7 @@ This should be easy...
 > btw, There is one for each type of ktx `(1.1/2.0)` and more in [uwu-user/pyktx-tool](https://github.com/uwu-user/pyktx-tool)
 
 ---
-### [1]: Compiling etc2comp (Texture Compression Tool, Linux/macOS)
+### [ * ]: Compiling etc2comp (Texture Compression Tool, Linux/macOS)
 
 **- Clone the repository**
 ```
@@ -68,6 +68,53 @@ copy the EtcTool file from $HOME/etc2comp/build/EtcTool to $HOME
 ```
 
 ---
+### [ * ] : Compiling etc2comp (Texture Compression Tool, Windows)
+
+**- Clone the repository**
+```
+git clone https://github.com/google/etc2comp.git
+```
+
+**- Enter the project directory**
+```
+cd etc2comp
+```
+
+**- Create a build directory**
+```
+mkdir build
+```
+
+**- Enter the build directory**
+```
+cd build
+```
+
+**- Generate build files with CMake**
+```
+cmake ..
+```
+
+**- compile the project**
+```
+cmake --build . --config Release
+```
+
+**- copy the file** `Optional`
+```
+copy the EtcTool file from copy Release\EtcTool.exe to %USERPROFILE%\
+```
+ - or you can use a special path when running the tool `(It'll be the same, it won't make a difference)`
+```
+[ ! ]: EtcTool not found in current directory
+   › [ ? ]  Enter the tool path or exit to cancel
+      » Release\EtcTool.exe
+```
+
+> [!NOTE]
+> I have Windows, so I won't test this yet
+
+---
 
 If you do everything right, it should be the same as this
 <p>
@@ -81,7 +128,7 @@ If you do everything right, it should be the same as this
 
 --- 
 
-### [2]: KtxTool.py Prerequisites
+### [ * ]: KtxTool.py Prerequisites
 
 - Tool Prerequisites
   - `os / sys / subprocess / pathlib`
