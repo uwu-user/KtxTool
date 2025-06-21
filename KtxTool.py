@@ -123,16 +123,25 @@ def convert_bytes(size):
 
 # Function to verify tool executable
 def verify_etctool():
-    """Verifies existence and permissions of EtcTool.so"""
-    toolpath = Path("./EtcTool.so")  # Create Path object for the tool
+    """Verifies existence and permissions of EtcTool with user input if not found"""
+    toolpath = Path("./EtcTool")  # First check current directory
     
-    if not toolpath.exists():  # Check if file doesn't exist
-        # Print error message in red box
-        print(f"\n{Colors.Red}• {Colors.White}[ {Colors.Red}! {Colors.White}]: {Colors.Red}Tool Not Found:{Colors.Reset}")
-        print(f"{Colors.Reset}╭─────────────────────────────────────────────╮")
-        print(f"{Colors.Reset}│ {Colors.Light_Blue}EtcTool.so {Colors.Red}not found in working directory{' ' * 3}{Colors.Reset}│")
-        print(f"{Colors.Reset}╰─────────────────────────────────────────────╯")
-        return None  # Return None indicating failure
+    if not toolpath.exists():  # If not found in current directory
+        # Prompt user to specify location
+        print(f"\n{Colors.Red}• {Colors.White}[ {Colors.Red}! {Colors.White}]: {Colors.Yellow}EtcTool not found in current directory{Colors.Reset}")
+
+        while True:  # Keep prompting until valid path or exit
+            user_path = input(f"{' ' * 3}{Colors.Green}» ").strip()
+            user_path = check_for_exit(user_path)  # Check for exit command
+            
+            if not user_path:
+                print(f"{' ' * 9}› {Colors.White}[ {Colors.Red}! {Colors.White}] {Colors.Red}Error: {Colors.Light_Blue}Enter a path{Colors.Reset}")
+                continue
+                
+            toolpath = Path(user_path)
+            if toolpath.exists():
+                break  # Found valid path
+            print(f"{' ' * 9}› {Colors.White}[ {Colors.Red}! {Colors.White}] {Colors.Red}Error: {Colors.Red}File not found at {Colors.Yellow}{user_path}{Colors.Reset}")
 
     try:
         toolpath = toolpath.resolve()  # Convert to absolute path
@@ -153,7 +162,7 @@ def verify_etctool():
         # Print success message in green box
         print(f"\n{Colors.Green}• {Colors.White}[ {Colors.Light_Blue}✓ {Colors.White}]: {Colors.Green}Tool Verification{Colors.Reset}")
         print(f"{Colors.Green}╭─────────────────────────────────────────────╮")
-        print(f"{Colors.Green}│ {Colors.Light_Blue}EtcTool.so {Colors.Green}verified and ready for use{' ' * 7}{Colors.Green}│")
+        print(f"{Colors.Green}│ {Colors.Light_Blue}EtcTool {Colors.Green}verified and ready for use{' ' * 10}{Colors.Green}│")
         print(f"{Colors.Green}│ {Colors.Light_Blue}Size{Colors.Light_Blue}: {Colors.Green}{size_str.ljust(38)}{Colors.Green}│")
         print(f"{Colors.Green}╰─────────────────────────────────────────────╯")
         return str(toolpath)  # Return absolute path string on success
@@ -689,10 +698,10 @@ def launch_interactive_converter():
     Guides user through step-by-step conversion process with menus and prompts"""
     print_tool_logo()  # Display the tool's logo/header
     
-    # Verify EtcTool.so is available
+    # Verify EtcTool is available
     toolpath = verify_etctool()  
     if not toolpath:
-        print(f"\n{Colors.Red}• {Colors.White}[ {Colors.Red}! {Colors.White}]: {Colors.Red}Cannot continue without EtcTool.so{Colors.Reset}")
+        print(f"\n{Colors.Red}• {Colors.White}[ {Colors.Red}! {Colors.White}]: {Colors.Red}Cannot continue without EtcTool{Colors.Reset}")
         check_for_exit("exit")  # Exit if critical dependency missing
     
     # Present conversion type options
@@ -722,7 +731,7 @@ def launch_interactive_converter():
 def process_single_file_conversion(toolpath):
     """Handles conversion workflow for individual image files
     Args:
-        toolpath: Path to EtcTool.so binary"""
+        toolpath: Path to EtcTool binary"""
     while True:
         # Get input file path from user
         input_file = input(f"\n{Colors.Cyan}• {Colors.Green}[2/5]: {Colors.White}Enter the input filename\n › {Colors.Orange}[ {Colors.Red}Note {Colors.Orange}]{Colors.White}: type {Colors.Red}'{Colors.Green}exit{Colors.Red}' {Colors.White}to cancel\n{' ' * 3}{Colors.Green}» ")
@@ -796,7 +805,7 @@ def process_single_file_conversion(toolpath):
 def process_folder_conversion(toolpath):
     """Handles batch conversion of all supported images in a folder
     Args:
-        toolpath: Path to EtcTool.so binary"""
+        toolpath: Path to EtcTool binary"""
     while True:
         # Get folder path from user
         input_folder = input(f"\n{Colors.Cyan}• {Colors.Green}[2/5]: {Colors.White}Enter the folder path\n{' ' * 3}{Colors.Green}» ")
