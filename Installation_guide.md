@@ -66,7 +66,7 @@ If you do everything right, it should be the same as this
 ---
 
 > [!NOTE] 
-> about the tool path, copy it from $HOME/etc2comp/build/EtcTool to $HOME, And also don't forget:  chmod +x path/EtcTool
+> about the tool path, copy it from $HOME/etc2comp/build/EtcTool to $HOME, And also don't forget:  chmod +x $HOME/EtcTool
 
 --- 
 
