@@ -21,42 +21,42 @@ This should be easy...
 ---
 ### [ * ]: Compiling etc2comp (Texture Compression Tool, Linux/macOS)
 
-**- Clone the repository**
+**[1]: Clone the repository**
 ```
 git clone https://github.com/google/etc2comp.git
 ```
 
-**- Enter the project directory**
+**[2]: Enter the project directory**
 ```
 cd etc2comp
 ```
 
-**- Create a build directory**
+**[3]: Create a build directory**
 ```
 mkdir build
 ```
 
-**- Enter the build directory**
+**[4] Enter the build directory**
 ```
 cd build
 ```
 
-**- Generate build files with CMake**
+**[5]: Generate build files with CMake**
 ```
 cmake ..
 ```
 
-**- compile the project**
+**[6]: compile the project**
 ```
 make -j$(nproc)
 ```
 
-**- change the permissions**
+**[7]: change the permissions**
 ```
 chmod +x ./EtcTool
 ```
 
-**- copy the file** `Optional`
+**[ * ]: copy the file** `Optional`
 ```
 copy the EtcTool file from $HOME/etc2comp/build/EtcTool to $HOME
 ```
@@ -70,53 +70,47 @@ copy the EtcTool file from $HOME/etc2comp/build/EtcTool to $HOME
 ---
 ### [ * ] : Compiling etc2comp (Texture Compression Tool, Windows)
 
-**- Clone the repository**
+**[1]: Clone the repository**
 ```
 git clone https://github.com/google/etc2comp.git
 ```
 
-**- Enter the project directory**
+**[2]: Enter the project directory**
 ```
 cd etc2comp
 ```
 
-**- Create a build directory**
+**[3]: Create a build directory**
 ```
 mkdir build
 ```
 
-**- Enter the build directory**
+**[4]: Enter the build directory**
 ```
 cd build
 ```
 
-**- Generate build files with CMake**
+> [!WARNING]
+> To the fact that `etc2comp` has not been updated for a long time, you should change the version on it before building it on windows!
+  - open `etc2comp/CMakeLists.txt`
+  - change the Version from
+    - ```cmake_minimum_required(VERSION 2.8.9)```
+  - To
+    - ```cmake_minimum_required(VERSION 3.5...3.27)```
+
+**[5]: Generate build files with CMake**
 ```
 cmake ..
 ```
 
-**- compile the project**
+**[6]: compile the project**
 ```
 cmake --build . --config Release
 ```
 
-**- copy the file** `Optional`
-```
-copy the EtcTool file from copy Release\EtcTool.exe to %USERPROFILE%\
-```
- - or you can use a special path when running the tool `(It'll be the same, it won't make a difference)`
-```
-[ ! ]: EtcTool not found in current directory
-   › [ ? ]  Enter the tool path or exit to cancel
-      » Release\EtcTool.exe
-```
-
-> [!NOTE]
-> I have Windows, so I won't test this yet
-
 ---
 
-If you do everything right, it should be the same as this
+If you do everything right, it should be the same as this `[as liunx]`
 <p>
     <img src="./assets/etc2comp.png" />
 </p>
