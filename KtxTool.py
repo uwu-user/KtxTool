@@ -106,7 +106,7 @@ def print_tool_logo():
 def clear_console():
     """Clears the terminal screen safely on Windows, macOS, and Linux."""
     # Run 'cls' on Windows, 'clear' on Unix/macOS
-    subprocess.run(["cls"] if os.name == "nt" else ["clear"], check=True)
+    os.system('cls' if os.name == 'nt' else 'clear') 
     
 #______________________________________________________________________________
 
@@ -1002,24 +1002,30 @@ def execute_cli_conversion(args):
 def main() -> None:
     """Main entry point for the converter application.
     
-    Determines whether to run in CLI or interactive mode based on arguments.
-    Handles user interruptions and errors gracefully.
+    This function serves as the central control for the converter program.
+    It handles both command-line and interactive modes, and manages errors.
     """
     try:
         # Check if command-line arguments were provided (excluding script name)
-        if len(sys.argv) > 1:  
-            # Execute CLI conversion with arguments (skip script name)
-            execute_cli_conversion(sys.argv[1:])  
+        if len(sys.argv) > 1:  # sys.argv contains command-line arguments
+            # Execute conversion in command-line mode with provided arguments
+            execute_cli_conversion(sys.argv[1:])  # Pass all args except script name
         else:  
-            # No arguments provided, launch interactive mode
-            launch_interactive_converter()
+            # Launch interactive mode if no command-line arguments were given
+            launch_interactive_converter()  # Start interactive user interface
     
-    # Catch and display any unexpected errors
+    # Handle keyboard interrupt (Ctrl+C) gracefully
+    except KeyboardInterrupt:
+        # Call function to check if user wants to exit
+        check_for_exit("exit")  # Pass "exit" as argument to confirmation function
+    # Catch all other unexpected exceptions
     except Exception as e:
-        print(f"Error: {str(e)}")
-        sys.exit(1)  # Exit with error code 1
+        # Print error message to standard error stream
+        print(f"Error: {str(e)}", file=sys.stderr)
+        # Exit program with error status code (1)
+        sys.exit(1)
 
-
-# Standard Python entry point check
+# Standard Python idiom to check if script is being run directly
 if __name__ == "__main__":
-    main()
+    # If script is run directly (not imported), call main function
+    main()  # Start program execution
