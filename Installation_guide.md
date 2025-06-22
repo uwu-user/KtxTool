@@ -80,6 +80,14 @@ git clone https://github.com/google/etc2comp.git
 cd etc2comp
 ```
 
+> [!WARNING]
+> To the fact that `etc2comp` has not been updated for a long time, you should change the version on it before building it on windows!
+  - open `etc2comp/CMakeLists.txt`
+  - change the Version from
+    - ```cmake_minimum_required(VERSION 2.8.9)```
+  - To
+    - ```cmake_minimum_required(VERSION 3.5...3.27)```
+
 **[3]: Create a build directory**
 ```
 mkdir build
@@ -89,14 +97,6 @@ mkdir build
 ```
 cd build
 ```
-
-> [!WARNING]
-> To the fact that `etc2comp` has not been updated for a long time, you should change the version on it before building it on windows!
-  - open `etc2comp/CMakeLists.txt`
-  - change the Version from
-    - ```cmake_minimum_required(VERSION 2.8.9)```
-  - To
-    - ```cmake_minimum_required(VERSION 3.5...3.27)```
 
 **[5]: Generate build files with CMake**
 ```
